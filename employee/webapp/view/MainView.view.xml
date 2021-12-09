@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="logaligroup.employee.controller.MainView"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     displayBlock="true"
     xmlns="sap.m"
 >
@@ -8,7 +9,46 @@
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
-					<content />
+					<content>
+                        <Panel id="_IDGenPanel1" class="sapUiResponsiveMargin">
+                            <content>
+                                <Label id="_IDGenLabel1" text="{i18n>employeeLabel}" labelFor="_IDGenInput1" class="sapUiSmallMargin"/>
+                                <Input id="_IDGenInput1" width="15%" class="sapUiSmallMargin" liveChange=".onInputChange" valueLiveUpdate="true"/>
+                                <Label id="_IDGenLabel2" text="{i18n>countryLabel}" labelFor="_IDGenSelect1" class="sapUiSmallMargin" visible="{selectVisibility>/visibility}"/>
+                                <Select id="_IDGenSelect1" forceSelection="false" items="{employee>/listCountry}" class="sapUiSmallMargin" visible="{selectVisibility>/visibility}">
+                                    <core:Item id="_IDGenItem1" key="{employee>key}" text="{employee>text}" />
+                                </Select>
+
+                                <Table id="_IDGenTable1" inset="false" items="{employee>/employees}">
+                                    <columns>
+                                        <Column id="_IDGenColumn1">
+                                            <Text id="_IDGenText1" text="Employee Id" />
+                                        </Column>
+                                        <Column id="_IDGenColumn2">
+                                            <Text id="_IDGenText2" text="Name" />
+                                        </Column>
+                                        <Column id="_IDGenColumn3">
+                                            <Text id="_IDGenText3" text="Country" />
+                                        </Column>
+                                        <Column id="_IDGenColumn4">
+                                            <Text id="_IDGenText4" text="City" />
+                                        </Column>
+                                    </columns>
+
+                                    <items>
+                                        <ColumnListItem id="_IDGenColumnListItem1">
+                                            <cells>
+                                                <Label id="_IDGenLabel3" text="{employee>EmployeeID}"/>
+                                                <Label id="_IDGenLabel4" text="{employee>LastName}, {employee>FirstName}"/>
+                                                <Label id="_IDGenLabel5" text="{employee>Country}"/>
+                                                <Label id="_IDGenLabel6" text="{employee>City}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>        
+                            </content>
+                        </Panel>
+                    </content>
 				</Page>
 			</pages>
 		</App>
