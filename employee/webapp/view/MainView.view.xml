@@ -12,14 +12,16 @@
 					<content>
                         <Panel id="_IDGenPanel1" class="sapUiResponsiveMargin">
                             <content>
-                                <Label id="_IDGenLabel1" text="{i18n>employeeLabel}" labelFor="_IDGenInput1" class="sapUiSmallMargin"/>
-                                <Input id="_IDGenInput1" width="15%" class="sapUiSmallMargin" liveChange=".onInputChange" valueLiveUpdate="true"/>
-                                <Label id="_IDGenLabel2" text="{i18n>countryLabel}" labelFor="_IDGenSelect1" class="sapUiSmallMargin" visible="{selectVisibility>/visibility}"/>
-                                <Select id="_IDGenSelect1" forceSelection="false" items="{employee>/listCountry}" class="sapUiSmallMargin" visible="{selectVisibility>/visibility}">
-                                    <core:Item id="_IDGenItem1" key="{employee>key}" text="{employee>text}" />
+                                <Label id="_IDGenLabel1" text="{i18n>employeeLabel}" labelFor="_IDGenInput1" class="sapUiSmallMarginEnd"/>
+                                <Input id="_IDGenInput1" width="15%" class="sapUiSmallMarginEnd" valueLiveUpdate="true" value="{employee>/EmployeeId}"/>
+                                <Label id="_IDGenLabel2" text="{i18n>countryLabel}" labelFor="_IDGenSelect1" class="sapUiSmallMarginEnd" visible="{selectVisibility>/visibility}"/>
+                                <Select id="_IDGenSelect1" forceSelection="false" items="{employee>/ListCountry}" class="" visible="{selectVisibility>/visibility}" selectedKey="{employee>/CountryKey}">
+                                    <core:Item id="_IDGenItem1" key="{employee>Key}" text="{employee>Text}" />
                                 </Select>
+                                <Button id="_IDGenButton1" text="{i18n>filterBtn}" icon="sap-icon://search" class="sapUiSmallMarginEnd" press=".onFilter"/>
+                                <Button id="_IDGenButton2" text="{i18n>filterClrBtn}" icon="sap-icon://clear-filter" class="" press=".onClearFilter" />
 
-                                <Table id="_IDGenTable1" inset="false" items="{employee>/employees}">
+                                <Table id="_IDGenTable1" inset="false" items="{employee>/Employees}">
                                     <columns>
                                         <Column id="_IDGenColumn1">
                                             <Text id="_IDGenText1" text="Employee Id" />
@@ -36,7 +38,7 @@
                                     </columns>
 
                                     <items>
-                                        <ColumnListItem id="_IDGenColumnListItem1">
+                                        <ColumnListItem id="_IDGenColumnListItem1" type="Active" press=".onShowPostalCode">
                                             <cells>
                                                 <Label id="_IDGenLabel3" text="{employee>EmployeeID}"/>
                                                 <Label id="_IDGenLabel4" text="{employee>LastName}, {employee>FirstName}"/>
