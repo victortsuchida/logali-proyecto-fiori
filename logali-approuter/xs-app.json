@@ -1,4 +1,18 @@
 {
-  "authenticationMethod": "none",
-  "routes": []
+    "authenticationMethod": "none",
+    "routes": [
+        {
+            "authentificationType": "none",
+            "csrfProtection": false,
+            "source": "^/Northwind/(.*)$",
+            "destination": "Northwind",
+            "target": "$1"
+        },
+        {
+            "authentificationType": "xsuaa",
+            "csrfProtection": false,
+            "source": "^/sap/opu/odata/sap/YSAPUI5_SRV_01/",
+            "destination": "logaligroupERP"
+        }
+    ]
 }

@@ -10,13 +10,21 @@
     "title": "{{appTitle}}",
     "description": "{{appDescription}}",
     "dataSources": {
-      "mainService": {
+      "Northwind.svc": {
         "uri": "/V2/Northwind/Northwind.svc/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
+        }
+      },
+      "YSAPUI5_SRV_01": {
+        "uri": "/sap/opu/odata/sap/YSAPUI5_SRV_01/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/YSAPUI5_SRV_01/metadata.xml"
         }
       }
     }
@@ -56,10 +64,27 @@
           "bundleName": "logaligroup.employee.i18n.i18n"
         }
       },
-      "": {
-        "dataSource": "mainService",
+      "odataNorthwind": {
+        "dataSource": "Northwind.svc",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "Request",
+          "refreshAfterChange": false
+        }
+      },
+      "incidenceModel": {
+        "dataSource": "YSAPUI5_SRV_01",
+        "preload": true,
+        "settings": {
+          "defaultOperationMode": "Server",
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Request",
+          "refreshAfterChange": false,
+          "useBatch": false,
+          "defaultUpdateMethod": "Put"
+        }
       }
     },
     "resources": {
@@ -89,20 +114,20 @@
         }
       ],
       "targets": {
-        "TargetMainView": {
+        "Target": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "MainView",
-          "viewName": "MainView"
+          "viewId": "Main",
+          "viewName": "Main"
         }
       }
     },
     "rootView": {
-      "viewName": "logaligroup.employee.view.MainView",
+      "viewName": "logaligroup.employee.view.Main",
       "type": "XML",
       "async": true,
-      "id": "MainView"
+      "id": "Main"
     }
   }
 }

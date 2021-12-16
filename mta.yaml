@@ -1,30 +1,36 @@
-_schema-version: "3.2"
+_schema-version: '3.2'
 ID: logali
 version: 0.0.1
 modules:
-- name: logali-approuter
-  type: approuter.nodejs
-  path: logali-approuter
-  requires:
-  - name: logali_html_repo_runtime
-  parameters:
-    disk-quota: 256M
-    memory: 256M
-- name: logali_ui_deployer
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: logali_html_repo_host
+  - name: logali-approuter
+    type: approuter.nodejs
+    path: logali-approuter
+    requires:
+      - name: logali_html_repo_runtime
+      - name: dest_logali
     parameters:
-      content-target: true
+      disk-quota: 256M
+      memory: 256M
+  - name: logali_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: logali_html_repo_host
+        parameters:
+          content-target: true
 resources:
-- name: logali_html_repo_runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
-- name: logali_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
+  - name: logali_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: logali_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: dest_logali
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
